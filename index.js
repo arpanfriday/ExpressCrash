@@ -7,6 +7,9 @@ const app = express();
 // Init middleware
 app.use(logger)
 
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 // ---------------------------------------------------------------------
 // app.get('/', (req, res) => {
@@ -17,6 +20,7 @@ app.use(logger)
 app.use(express.static(path.join(__dirname, 'public')));
 // ---------------------------------------------------------------------
 
+// Members API routes
 app.use('/api/members', require('./routes/api/members'));
 
 const PORT = process.env.PORT || 5000;
